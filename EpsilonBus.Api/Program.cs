@@ -11,6 +11,13 @@ builder.Services.AddDbContext<EpsilonBusDbContext>(options =>
        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddControllers(); // <-- Add this line
+builder.Services.AddCors(options =>
+   {
+       options.AddPolicy("AllowLocalhost5173",
+           policy => policy.WithOrigins("http://localhost:5173")
+                           .AllowAnyHeader()
+                           .AllowAnyMethod());
+   }); // <-- Add CORS policy
 
 var app = builder.Build();
 
@@ -22,6 +29,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowLocalhost5173"); // <-- Use CORS policy
 
 app.MapControllers(); // <-- Add this line
 

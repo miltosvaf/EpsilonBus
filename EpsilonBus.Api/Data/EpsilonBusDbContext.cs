@@ -18,6 +18,7 @@ namespace EpsilonBus.Api.Data
         public DbSet<Language> Languages { get; set; }
         public DbSet<TranslatedText> TranslatedTexts { get; set; }
         public DbSet<BusinessLogicRule> BusinessLogicRules { get; set; }
+        public DbSet<User> Users { get; set; } // Add Users DbSet
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -69,6 +69,7 @@
     <Build Include="BusinessLogicRules.sql" />
     <Build Include="TranslatedTexts.sql" />
     <Build Include="Languages.sql" />
+    <Build Include="Users.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EpsilonBusDB.refactorlog" />
