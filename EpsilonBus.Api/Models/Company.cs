@@ -8,6 +8,6 @@ namespace EpsilonBus.Api.Models
         public string CompanyCode { get; set; }
         public string CompanyName { get; set; }
         public int IsActive { get; set; }
-        public ICollection<Branch> Branches { get; set; }
+        public ICollection<Branch>? Branches { get; set; }
     }
 }

@@ -18,9 +18,9 @@ namespace EpsilonBus.Api.Models
         public int? OperatesSaturday { get; set; }
         public int? OperatesSunday { get; set; }
         public Company Company { get; set; }
-        public ICollection<Employee> Employees { get; set; }
-        public ICollection<Stop> Stops { get; set; }
-        public ICollection<BusAllocation> BusAllocations { get; set; }
-        public ICollection<NonWorkingDay> NonWorkingDays { get; set; }
+        public ICollection<Employee>? Employees { get; set; }
+        public ICollection<Stop>? Stops { get; set; }
+        public ICollection<BusAllocation>? BusAllocations { get; set; }
+        public ICollection<NonWorkingDay>? NonWorkingDays { get; set; }
     }
 }
