@@ -20,10 +20,13 @@ namespace EpsilonBus.Api.Data
         public DbSet<BusinessLogicRule> BusinessLogicRules { get; set; }
         public DbSet<User> Users { get; set; } // Add Users DbSet
         public DbSet<ReportPerDateDirectionStopResult> ReportPerDateDirectionStopResults { get; set; }
+        public DbSet<ReportSingleDatePerDirectionStopDetailedListResult> ReportSingleDatePerDirectionStopDetailedListResults { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Add any custom configuration here if needed
+            modelBuilder.Entity<ReportPerDateDirectionStopResult>().HasNoKey();
+            modelBuilder.Entity<ReportSingleDatePerDirectionStopDetailedListResult>().HasNoKey();
         }
     }
 }

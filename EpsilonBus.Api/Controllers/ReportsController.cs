@@ -29,4 +29,19 @@ public class ReportsController : ControllerBase
 
         return Ok(results);
     }
+
+    [HttpGet("single-date-per-direction-stop-detailed-list")]
+    public async Task<ActionResult<IEnumerable<ReportSingleDatePerDirectionStopDetailedListResult>>> GetSingleDatePerDirectionStopDetailedList(
+        [FromQuery] DateTime specificDate,
+        [FromQuery] int branchId,
+        [FromQuery] int languageId = 1)
+    {
+        var results = await _context.ReportSingleDatePerDirectionStopDetailedListResults
+            .FromSqlRaw(
+                "EXEC [dbo].[getReportSingleDatePerDirectionStopDetailedList] @SpecificDate = {0}, @BranchID = {1}, @LanguageID = {2}",
+                specificDate, branchId, languageId)
+            .ToListAsync();
+
+        return Ok(results);
+    }
 }
