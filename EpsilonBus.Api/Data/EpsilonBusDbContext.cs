@@ -21,12 +21,16 @@ namespace EpsilonBus.Api.Data
         public DbSet<User> Users { get; set; } // Add Users DbSet
         public DbSet<ReportPerDateDirectionStopResult> ReportPerDateDirectionStopResults { get; set; }
         public DbSet<ReportSingleDatePerDirectionStopDetailedListResult> ReportSingleDatePerDirectionStopDetailedListResults { get; set; }
+        public DbSet<BusinessDayResult> BusinessDayResults { get; set; }
+        public DbSet<ReportEmployeeAvgBookingPerWeekResult> ReportEmployeeAvgBookingPerWeekResults { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Add any custom configuration here if needed
             modelBuilder.Entity<ReportPerDateDirectionStopResult>().HasNoKey();
             modelBuilder.Entity<ReportSingleDatePerDirectionStopDetailedListResult>().HasNoKey();
+            modelBuilder.Entity<BusinessDayResult>().HasNoKey();
+            modelBuilder.Entity<ReportEmployeeAvgBookingPerWeekResult>().HasNoKey();
         }
     }
 }

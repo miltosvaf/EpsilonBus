@@ -4,6 +4,6 @@ public class ReportSingleDatePerDirectionStopDetailedListResult
     public int StopID { get; set; }
     public string StopCode { get; set; }
     public string StopName { get; set; }
-    public int EmployeeID { get; set; }
-    public string EmployeeName { get; set; }
+    public int? EmployeeID { get; set; }
+    public string? EmployeeName { get; set; }
 }

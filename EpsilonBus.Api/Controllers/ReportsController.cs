@@ -44,4 +44,34 @@ public class ReportsController : ControllerBase
 
         return Ok(results);
     }
+
+    [HttpGet("business-days-in-range")]
+    public async Task<ActionResult<IEnumerable<BusinessDayResult>>> GetBusinessDaysInRange(
+        [FromQuery] DateTime startDate,
+        [FromQuery] DateTime endDate,
+        [FromQuery] int branchId)
+    {
+        var results = await _context.BusinessDayResults
+            .FromSqlRaw(
+                "EXEC [dbo].[getBusinessDaysInRange] @StartDate = {0}, @EndDate = {1}, @BranchID = {2}",
+                startDate, endDate, branchId)
+            .ToListAsync();
+
+        return Ok(results);
+    }
+
+    [HttpGet("employee-avg-booking-per-week")]
+    public async Task<ActionResult<IEnumerable<ReportEmployeeAvgBookingPerWeekResult>>> GetEmployeeAvgBookingPerWeek(
+        [FromQuery] DateTime startDate,
+        [FromQuery] DateTime endDate,
+        [FromQuery] int branchId)
+    {
+        var results = await _context.ReportEmployeeAvgBookingPerWeekResults
+            .FromSqlRaw(
+                "EXEC [dbo].[getReportEmployeeAvgBookingPerWeek] @StartDate = {0}, @EndDate = {1}, @BranchID = {2}",
+                startDate, endDate, branchId)
+            .ToListAsync();
+
+        return Ok(results);
+    }
 }
