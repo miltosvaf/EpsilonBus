@@ -70,6 +70,7 @@
     <Build Include="TranslatedTexts.sql" />
     <Build Include="Languages.sql" />
     <Build Include="Users.sql" />
+    <Build Include="getReportPerDateDirectionStop.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EpsilonBusDB.refactorlog" />
