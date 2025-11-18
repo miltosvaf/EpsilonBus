@@ -1,6 +1,12 @@
 ﻿CREATE PROCEDURE [dbo].[getReportPerDateDirectionStop] @StartDate DATE, @EndDate DATE, @BranchID INT, @LanguageID int = 1
 AS
 BEGIN
+    --
+    -- Report of number of Employees with Bookings
+    -- Per Date in provided range (StartDate to EndDate) - on days of the week Branch is operating without nonworking dates
+    -- Per Direction (Outbound/Inbound)
+    -- Per Stop (translated via TranslatedTexts table for LanguageID provided)
+    --
 	SET NOCOUNT ON;
     SET DATEFIRST 1;
     DECLARE @OutboundStr varchar(255)='Outbound';
@@ -28,7 +34,7 @@ BEGIN
         FROM DateRange dr
         CROSS JOIN BranchOpers bo
         LEFT JOIN NonWorkingDays nwd ON nwd.BranchID=@BranchID AND nwd.CalendarDate=dr.CalendarDate
-        WHERE nwd.CalendarDate is null -- exclude non-working days
+        WHERE nwd.CalendarDate is null
         AND (
             (DATEPART(WEEKDAY, dr.CalendarDate)=1 AND bo.OperatesMonday=1)
             OR (DATEPART(WEEKDAY, dr.CalendarDate)=2 AND bo.OperatesTuesday=1)
