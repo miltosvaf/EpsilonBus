@@ -8,6 +8,7 @@
     [CompanyID] INT NOT NULL, 
     [BranchID] INT NOT NULL, 
     [IsActive] INT NOT NULL DEFAULT 1,
-	CONSTRAINT FK_Employees_Companies FOREIGN KEY (CompanyID) REFERENCES [dbo].[Companies](ID),
+	[EntraIDCode] NVARCHAR(MAX) NULL, 
+    CONSTRAINT FK_Employees_Companies FOREIGN KEY (CompanyID) REFERENCES [dbo].[Companies](ID),
 	CONSTRAINT FK_Employees_Branches FOREIGN KEY (BranchID) REFERENCES [dbo].[Branches](ID)
 )

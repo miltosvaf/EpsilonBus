@@ -14,6 +14,7 @@ namespace EpsilonBus.Api.Models
         [EmailAddress]
         public string Email { get; set; }
         public string Role { get; set; } // Added role property
+        public int? EmployeeID { get; set; } // Link to Employee
+        public string EntraIDCode { get; set; } // For Entra ID integration
     }
 }
- 

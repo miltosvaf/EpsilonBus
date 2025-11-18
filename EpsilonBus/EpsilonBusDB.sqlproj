@@ -74,6 +74,9 @@
     <Build Include="getReportSingleDatePerDirectionStopDetailedList.sql" />
     <Build Include="getBusinessDaysInRange.sql" />
     <Build Include="getReportEmployeeAvgBookingPerWeek.sql" />
+    <Build Include="getStops.sql" />
+    <Build Include="getEmployeeDetailsByEmployeeCode.sql" />
+    <Build Include="getStopsActiveDetails.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EpsilonBusDB.refactorlog" />

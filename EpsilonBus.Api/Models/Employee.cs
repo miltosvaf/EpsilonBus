@@ -12,5 +12,6 @@ namespace EpsilonBus.Api.Models
         public int IsActive { get; set; }
         public Branch Branch { get; set; }
         public Company Company { get; set; }
+        public string EntraIDCode { get; set; } // Added for Entra ID integration
     }
 }

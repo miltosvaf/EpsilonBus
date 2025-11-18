@@ -1,11 +1,12 @@
+using EpsilonBus.Api.Data;
+using EpsilonBus.Api.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using EpsilonBus.Api.Data;
-using EpsilonBus.Api.Models;
 
 namespace EpsilonBus.Api.Controllers
 {
@@ -36,6 +37,33 @@ namespace EpsilonBus.Api.Controllers
                 Username = user.Username,
                 Email = user.Email,
                 Role = user.Role
+            });
+        }
+
+        [HttpPost("validate-employee")]
+        [Authorize]
+        public async Task<ActionResult<ValidateEmployeeResponse>> ValidateEmployee()
+        {
+            // Extract EntraIDCode from token (e.g., oid claim)
+            var entraIdCode = User.FindFirst("oid")?.Value;
+            if (string.IsNullOrEmpty(entraIdCode))
+                return Unauthorized();
+
+            // Find employee by EntraIDCode
+            var employee = await _context.Employees.FirstOrDefaultAsync(e => e.EntraIDCode == entraIdCode);
+            if (employee == null)
+                return NotFound();
+
+            // Check Users table for special role
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.EntraIDCode == entraIdCode);
+            var role = user?.Role ?? "user";
+
+            return Ok(new ValidateEmployeeResponse
+            {
+                EmployeeId = employee.ID,
+                EntraIDCode = employee.EntraIDCode,
+                EmployeeName = employee.EmployeeName,
+                Role = role
             });
         }
 

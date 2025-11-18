@@ -72,6 +72,16 @@ namespace EpsilonBus.Api.Controllers
             return NoContent();
         }
 
+        // GET: api/employees/bycode/{employeeCode}?languageId=1
+        [HttpGet("bycode/{employeeCode}")]
+        public async Task<ActionResult<EmployeeDetailsDto>> GetEmployeeDetailsByCode(string employeeCode, [FromQuery] int languageId = 1)
+        {
+            var result = await _context.GetEmployeeDetailsByCodeAsync(employeeCode, languageId);
+            if (result == null)
+                return NotFound();
+            return Ok(result);
+        }
+
         private bool EmployeeExists(int id)
         {
             return _context.Employees.Any(e => e.ID == id);

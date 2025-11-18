@@ -72,6 +72,23 @@ namespace EpsilonBus.Api.Controllers
             return NoContent();
         }
 
+        // GET: api/stops/sp?branchId=1&showOnlyActive=1&languageId=1
+        [HttpGet("sp")]
+        public async Task<ActionResult<IEnumerable<StopDto>>> GetStopsForBranch(
+            [FromQuery] int branchId, [FromQuery] int showOnlyActive, [FromQuery] int languageId = 1)
+        {
+            var result = await _context.GetStopsSPAsync(branchId, showOnlyActive, languageId);
+            return Ok(result);
+        }
+
+        // GET: api/stops/active-details?branchId=1&languageId=1
+        [HttpGet("active-details")]
+        public async Task<ActionResult<IEnumerable<StopActiveDetailsDto>>> GetStopsActiveDetails([FromQuery] int branchId, [FromQuery] int languageId = 1)
+        {
+            var result = await _context.GetStopsActiveDetailsSPAsync(branchId, languageId);
+            return Ok(result);
+        }
+
         private bool StopExists(int id)
         {
             return _context.Stops.Any(e => e.ID == id);
