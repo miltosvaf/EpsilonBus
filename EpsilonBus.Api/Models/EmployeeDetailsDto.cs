@@ -11,14 +11,14 @@ namespace EpsilonBus.Api.Models
         public int BranchID { get; set; }
         public string BranchCode { get; set; }
         public string BranchName { get; set; }
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
-        public int OperatesMonday { get; set; }
-        public int OperatesTuesday { get; set; }
-        public int OperatesWednesday { get; set; }
-        public int OperatesThursday { get; set; }
-        public int OperatesFriday { get; set; }
-        public int OperatesSaturday { get; set; }
-        public int OperatesSunday { get; set; }
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
+        public int? OperatesMonday { get; set; }
+        public int? OperatesTuesday { get; set; }
+        public int? OperatesWednesday { get; set; }
+        public int? OperatesThursday { get; set; }
+        public int? OperatesFriday { get; set; }
+        public int? OperatesSaturday { get; set; }
+        public int? OperatesSunday { get; set; }
     }
 }

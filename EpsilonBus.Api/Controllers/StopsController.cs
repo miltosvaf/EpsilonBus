@@ -34,18 +34,38 @@ namespace EpsilonBus.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Stop>> PostStop(Stop stop)
+        public async Task<ActionResult<Stop>> PostStop(StopCreateDto dto)
         {
+            var stop = new Stop
+            {
+                BranchID = dto.BranchID,
+                StopCode = dto.StopCode,
+                StopName = dto.StopName,
+                OrderNum = dto.OrderNum,
+                IsActive = dto.IsActive,
+                Latitude = dto.Latitude,
+                Longitude = dto.Longitude
+            };
             _context.Stops.Add(stop);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetStop), new { id = stop.ID }, stop);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutStop(int id, Stop stop)
+        public async Task<IActionResult> PutStop(int id, StopCreateDto dto)
         {
-            if (id != stop.ID)
-                return BadRequest();
+            var stop = await _context.Stops.FindAsync(id);
+            if (stop == null)
+                return NotFound();
+
+            stop.BranchID = dto.BranchID;
+            stop.StopCode = dto.StopCode;
+            stop.StopName = dto.StopName;
+            stop.OrderNum = dto.OrderNum;
+            stop.IsActive = dto.IsActive;
+            stop.Latitude = dto.Latitude;
+            stop.Longitude = dto.Longitude;
+
             _context.Entry(stop).State = EntityState.Modified;
             try
             {
@@ -68,7 +88,15 @@ namespace EpsilonBus.Api.Controllers
             if (stop == null)
                 return NotFound();
             _context.Stops.Remove(stop);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                // Optionally log the exception here
+                return Conflict(new { message = "Delete failed due to related data or database constraints." });
+            }
             return NoContent();
         }
 

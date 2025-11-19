@@ -68,7 +68,15 @@ namespace EpsilonBus.Api.Controllers
             if (company == null)
                 return NotFound();
             _context.Companies.Remove(company);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                // Optionally log the exception here
+                return Conflict(new { message = "Delete failed due to related data or database constraints." });
+            }
             return NoContent();
         }
 

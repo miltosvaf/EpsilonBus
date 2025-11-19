@@ -5,7 +5,7 @@ namespace EpsilonBus.Api.Models
     public class Branch
     {
         public int ID { get; set; }
-        public int CompanyID { get; set; }
+        public int? CompanyID { get; set; }
         public string BranchCode { get; set; }
         public string BranchName { get; set; }
         public double? Latitude { get; set; }

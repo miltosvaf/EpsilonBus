@@ -74,4 +74,16 @@ public class ReportsController : ControllerBase
 
         return Ok(results);
     }
+
+    [HttpGet("per-date-direction")]
+    public async Task<ActionResult<IEnumerable<ReportPerDateDirectionDto>>> GetReportPerDateDirection(
+        [FromQuery] DateTime startDate,
+        [FromQuery] DateTime endDate,
+        [FromQuery] int branchId,
+        [FromQuery] int direction,
+        [FromQuery] int languageId = 1)
+    {
+        var results = await _context.GetReportPerDateDirectionSPAsync(startDate, endDate, branchId, direction, languageId);
+        return Ok(results);
+    }
 }

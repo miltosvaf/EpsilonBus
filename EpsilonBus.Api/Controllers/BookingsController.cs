@@ -72,6 +72,50 @@ namespace EpsilonBus.Api.Controllers
             return NoContent();
         }
 
+        // POST: api/bookings/single
+        [HttpPost("single")]
+        public async Task<ActionResult<PostBookingSingleResponse>> PostBookingSingle([FromBody] PostBookingSingleRequest request)
+        {
+            var result = await _context.PostBookingSingleAsync(request);
+            if (result.IsSuccess == 1)
+                return Ok(result);
+            else
+                return BadRequest(result);
+        }
+
+        // POST: api/bookings/single-cancelation
+        [HttpPost("single-cancelation")]
+        public async Task<ActionResult<PostSingleCancelationResponse>> PostSingleCancelation([FromBody] PostSingleCancelationRequest request)
+        {
+            var result = await _context.PostSingleCancelationAsync(request);
+            if (result.IsSuccess == 1)
+                return Ok(result);
+            else
+                return BadRequest(result);
+        }
+
+        // POST: api/bookings/mass-cancelation
+        [HttpPost("mass-cancelation")]
+        public async Task<ActionResult<PostBookingCancellationMassResponse>> PostBookingCancellationMass([FromBody] PostBookingCancellationMassRequest request)
+        {
+            var result = await _context.PostBookingCancellationMassAsync(request);
+            if (result.IsSuccess == 1)
+                return Ok(result);
+            else
+                return BadRequest(result);
+        }
+
+        // POST: api/bookings/mass
+        [HttpPost("mass")]
+        public async Task<ActionResult<PostBookingMassResponse>> PostBookingMass([FromBody] PostBookingMassRequest request)
+        {
+            var result = await _context.PostBookingMassAsync(request);
+            if (result.IsSuccess == 1)
+                return Ok(result);
+            else
+                return BadRequest(result);
+        }
+
         private bool BookingExists(int id)
         {
             return _context.Bookings.Any(e => e.ID == id);

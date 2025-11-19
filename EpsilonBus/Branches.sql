@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Branches]
 (
 	[ID] INT NOT NULL PRIMARY KEY, 
-    [CompanyID] INT NOT NULL, 
+    [CompanyID] INT NULL, 
     [BranchCode] VARCHAR(50) NOT NULL, 
     [BranchName] NVARCHAR(255) NOT NULL, 
     [Latitude] FLOAT NULL, 
