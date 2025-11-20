@@ -5,5 +5,6 @@
     [PasswordHash] NVARCHAR(MAX) NOT NULL, 
     [Role] VARCHAR(50) NOT NULL, 
     [EntraIDCode] NVARCHAR(MAX) NULL, 
-    [EmployeeID] INT NULL
+    [EmployeeID] INT NULL, 
+    [Email] VARCHAR(1000) NULL
 )
