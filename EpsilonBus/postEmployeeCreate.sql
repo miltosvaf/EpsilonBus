@@ -5,7 +5,7 @@
 	, @CompanyID int
 	, @BranchID int
 	, @IsActive int
-	, @UserName int
+	, @UserName varchar(255)
 	, @EntraIDCode varchar(255)
 	, @UserRole varchar(50)
 	, @IsSuccess int OUTPUT, @ErrorCode varchar(100) OUTPUT, @ErrorMsg nvarchar(max) OUTPUT

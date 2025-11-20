@@ -36,7 +36,8 @@ namespace EpsilonBus.Api.Controllers
                 Token = token,
                 Username = user.Username,
                 Email = user.Email,
-                Role = user.Role
+                Role = user.Role,
+                EmployeeID = user.EmployeeID
             });
         }
 

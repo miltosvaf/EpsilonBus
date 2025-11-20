@@ -4,5 +4,6 @@
     [Username] VARCHAR(255) NOT NULL, 
     [PasswordHash] NVARCHAR(MAX) NOT NULL, 
     [Role] VARCHAR(50) NOT NULL, 
-    [EntraIDCode] NVARCHAR(MAX) NULL
+    [EntraIDCode] NVARCHAR(MAX) NULL, 
+    [EmployeeID] INT NULL
 )

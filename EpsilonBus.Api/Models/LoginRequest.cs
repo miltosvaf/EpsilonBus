@@ -12,5 +12,6 @@ namespace EpsilonBus.Api.Models
         public string Username { get; set; }
         public string Email { get; set; }
         public string Role { get; set; } // Added role property
+        public int? EmployeeID { get; set; } // Added EmployeeID property
     }
 }

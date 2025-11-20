@@ -9,10 +9,11 @@ BEGIN
 		, e.IsActive
 		, e.UserName
 		, e.EntraIDCode
-		, 'Employee' AS UserRole
+		, isnull(u.[Role],'Employee') AS UserRole
 	FROM Employees e
 	JOIN Companies c ON e.CompanyID=c.ID
 	JOIN Branches b ON e.BranchID=b.ID
+	LEFT JOIN [Users] u ON e.ID=u.EmployeeID
 	WHERE (isnull(@CompanyID,0)=0 OR c.ID=@CompanyID)
 	AND (isnull(@BranchID,0)=0 OR b.ID=@BranchID);
 
