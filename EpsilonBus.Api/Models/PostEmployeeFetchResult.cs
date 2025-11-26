@@ -12,5 +12,6 @@ namespace EpsilonBus.Api.Models
         public int BranchID { get; set; }
         public int IsActive { get; set; }
         public string UserRole { get; set; } // newly added
+        public string? EntraIDCode { get; set; } // newly added
     }
 }
