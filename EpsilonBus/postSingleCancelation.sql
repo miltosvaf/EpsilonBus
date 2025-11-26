@@ -9,7 +9,7 @@ BEGIN TRY
         -- 1. Try to delete a specific date booking (IsDefault=0)
         DELETE FROM Bookings
         WHERE EmployeeID = @EmployeeID
-          AND IsDefault = 0
+          AND isnull(IsDefault,0) = 0
           AND StartDate = @SpecificDate;
 
         -- 2. Check for a matching recurring booking (IsDefault=1)
@@ -32,7 +32,7 @@ BEGIN TRY
             @RecUseSunday = UseSunday
         FROM Bookings
         WHERE EmployeeID = @EmployeeID
-          AND IsDefault = 1
+          AND isnull(IsDefault, 0) = 1
           AND StartDate <= @SpecificDate
           AND (EndDate IS NULL OR EndDate >= @SpecificDate)
           AND (
